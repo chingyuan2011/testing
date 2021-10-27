@@ -4,23 +4,23 @@ let theShader = null;
 let imageTitle;
 let webGLCanvas = null;
 let images = [];
-let noiseSeedVal = [1000, 50000];
+let noiseSeedVal = 50000;
 let shaderResolution = [2000, 1000];
 let picWidth = [1038, 600, 300];
+let mouseDetectVal = [100, 200];
 
 //根據第幾張的index取得預設的物件大小
 let imageSizes = [0.8, 0.7, 1, 1.6, 1, 1, 1, 1];
 
 function preload() {
-  isMobile = detectDevice();
+  isMobile = false;
 
-  if(!isMobile) {
+  if (!isMobile) {
     theShader = new p5.Shader(this.renderer, vert, frag);
     imageTitle = loadImage("標準字.png");
   }
 
-  noiseSeed(random(noiseSeedVal[isMobile == true ? 0 : 1]));
-
+  noiseSeed(random(noiseSeedVal));
 
   //載入並指定影像大小
   for (var i = 1; i <= 8; i++) {
@@ -43,28 +43,35 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  if(!isMobile){
+  if (!isMobile) {
     webGLCanvas = createGraphics(width, height, WEBGL);
     webGLCanvas.shader(theShader);
   }
 
   noStroke();
-  // pixelDensity(1);
+  pixelDensity(1);
 }
 
 function draw() {
   clear(0, 0, width, height);
 
+  let scaleRatio = 1
+  let mouseDetectDistance = mouseDetectVal[0]
+  if (width < 900) {
+    mouseDetectDistance = mouseDetectVal[0]
+  } else {
+    mouseDetectDistance = mouseDetectVal[1]
+  }
 
   //繪製漂浮的物件
   let timeFactor = 1000;
   for (let i = 0; i < images.length; i++) {
     let defaultImageScale = images[i].defaultScale;
-    let scaleRatio = 1
-    if (width < 800) {
+    if (width < 900) {
       scaleRatio = 0.3 * defaultImageScale;
     } else {
       scaleRatio = 0.5 * defaultImageScale;
+      mouseDetectDistance = mouseDetectVal[1]
     }
     const spacing = {
       x: images[i].width / 6 * scaleRatio,
@@ -77,7 +84,8 @@ function draw() {
         noise((i + 1) * 400, frameCount / timeFactor, (i + 7) * 5000 + frameCount / timeFactor / 100) * (height + spacing.y) - spacing.y,
       ang = noise(i, frameCount / timeFactor, 10);
 
-    if (dist(x, y, mouseX, mouseY) < 100) {
+
+    if (dist(x, y, mouseX, mouseY) < mouseDetectDistance) {
       x += noise(frameCount / 5, 5000) * 20;
       y += noise(frameCount / 5) * 20;
     }
@@ -90,7 +98,7 @@ function draw() {
     pop();
   }
 
-  if(!isMobile) {
+  if (!isMobile) {
     drawShader();
   }
 
@@ -108,7 +116,6 @@ function windowResized() {
     webGLCanvas.resizeCanvas(windowWidth, windowHeight);
   }
 }
-
 
 function detectDevice() {
   if (navigator.userAgent.match(/Android/i)
@@ -128,7 +135,7 @@ function detectDevice() {
 }
 
 function drawShader() {
-  if( !theShader || !webGLCanvas) {return;}
+  if (!theShader || !webGLCanvas) { return; }
   webGLCanvas.clear(0, 0, width, height);
 
   //設定shader用的參數
@@ -141,8 +148,6 @@ function drawShader() {
   theShader.setUniform("u_mouse", [mouseX / width, mouseY / height]);
   theShader.setUniform("u_tex_title", imageTitle);
   // pic size 1038*1880
-  // if
-  // const picRatio = 
   theShader.setUniform("tex_size", [imageTitle.width, imageTitle.height]);
   theShader.setUniform("mouseIsPressed", mouseIsPressed);
 
@@ -151,3 +156,5 @@ function drawShader() {
   webGLCanvas.noStroke();
   image(webGLCanvas, 0, 0);
 }
+
+// 補 shader 變版

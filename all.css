@@ -20,11 +20,12 @@ body {
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .isMobile .mainTitle {
-        top: 50px;
-        left: calc(50% - 150px);
-        width: 300px;
-        height: auto;
-        transform: none;
+        top: calc((100vh - 250px) / 2);
+        left: 50%;
+        width: auto;
+        height: calc(100% - 300px);
+        max-height: 350px;
+        transform: translate(-50%, -50%);
     }
 }
 

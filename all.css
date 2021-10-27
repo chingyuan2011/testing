@@ -1,0 +1,287 @@
+html,
+body {
+    font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    /* border: solid 50px white; */
+}
+
+.videoWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100%;
+}
+
+.indicator {
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    z-index: 500;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%) scale(0.8);
+}
+
+@media only screen and (max-width: 600px) {
+    .indicator {
+        display: none;
+    }
+}
+
+.mouse {
+    width: 30px;
+}
+
+@media (min-aspect-ratio: 1920/1080) {
+    video {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 100%;
+        height: auto;
+    }
+}
+
+canvas {
+    z-index: 500;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    /* mix-blend-mode: multiply; */
+}
+
+/* .indicator * { */
+/* border: solid 1px red; */
+/* } */
+.left,
+.right {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.middleline {
+    margin-top: 10px;
+}
+
+.flx * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* 泡泡選單 */
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle__outblock {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle__outblock {
+        position: relative;
+        width: 100%;
+        height: 38vh;
+        margin-top: 10vh;
+    }
+}
+.circle {
+    cursor: pointer;
+    position: absolute;
+    transition: 1.2s;
+}
+a.circle__block{
+    text-decoration: none;
+}
+.circle:nth-child(1) .circle__block {
+    animation: aniFloat 3s infinite ease-in-out;
+}
+
+.circle:nth-child(2) .circle__block {
+    animation: aniFloat 2.5s infinite ease-in-out;
+}
+
+.circle:nth-child(3) .circle__block {
+    animation: aniFloat 3.3s infinite ease-in-out;
+}
+
+.circle:nth-child(4) .circle__block {
+    animation: aniFloat 2.9s infinite ease-in-out;
+}
+
+.circle:nth-child(5) .circle__block {
+    animation: aniFloat 2.3s infinite ease-in-out;
+}
+@keyframes aniFloat {
+    0%, 100%{
+        transform: translateY(0px);
+    }
+    60%{
+        transform: translateY(-10px);
+    }
+}
+.circle:hover {
+    transform: scale(1.2);
+    transition: 0.7s;
+}
+.circle--artistroom {
+    bottom: 20%;
+    right: 38%;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle--artistroom {
+        bottom: 20vh;
+        right: 74%;
+    }
+}
+.circle--fmaf {
+    bottom: 37%;
+    right: 30%;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle--fmaf {
+        bottom: 29vh;
+        right: 59%;
+    }
+}
+.circle--fvl {
+    bottom: 13%;
+    right: 20%;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle--fvl {
+        bottom: 14vh;
+        right: 40%;
+    }
+}
+.circle--about {
+    bottom: 25%;
+    right: 10%;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle--about {
+        bottom: 21vh;
+        right: 20%;
+    }
+}
+.circle--activity {
+    bottom: 36%;
+    right: 3%;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle--activity {
+        bottom: 28vh;
+        right: 2%;
+    }
+}
+.circle__block {
+    position: relative;
+    align-self: center;
+    background: radial-gradient(50% 50% at 50% 50%, transparent 0, #000 100%);
+    width: 191px;
+    height: 191px;
+    border-radius: 50%;
+    flex-direction: column;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block {
+        width: 143px;
+        height: 143px;
+    }
+}
+.circle__block--artistroom {
+    width: 100vw;
+    height: 100vw;
+    max-width: 148px;
+    max-height: 148px;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block--artistroom {
+        width: 21vw;
+        height: 21vw;
+    }
+}
+.circle__block--fmaf {
+    width: 100vw;
+    height: 100vw;
+    max-width: 92px;
+    max-height: 92px;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block--fmaf {
+        width: 20vw;
+        height: 20vw;
+    }
+}
+.circle__block--fvl {
+    width: 100vw;
+    height: 100vw;
+    max-width: 142px;
+    max-height: 142px;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block--fvl {
+        width: 28vw;
+        height: 28vw;
+    }
+}
+.circle__block--about {
+    width: 100vw;
+    height: 100vw;
+    max-width: 121px;
+    max-height: 121px;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block--about {
+        width: 20vw;
+        height: 20vw;
+    }
+}
+.circle__block--activity {
+    width: 100vw;
+    height: 100vw;
+    max-width: 87px;
+    max-height: 87px;
+}
+@media screen and (max-width: 766px) and (min-width: 0px) {
+    .circle__block--activity {
+        width: 19vw;
+        height: 19vw;
+    }
+}
+.circle__block__text {
+    position: static;
+    font-size: 18px;
+    line-height: 29px;
+    color: #fff;
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .circle__block__text {
+        font-size: 14px;
+    }
+}

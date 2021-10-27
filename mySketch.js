@@ -1,30 +1,37 @@
 //p5.js shader basic structure ref from https://www.openprocessing.org/sketch/920144
-
+let isMobile = null;
 let theShader;
 let imageTitle;
 let webGLCanvas;
 let images = [];
+let noiseSeedVal = [ 1000, 50000 ];
+let shaderResolution = [2000, 1000];
+let picWidth = [ 1038, 600, 300];
 
 //根據第幾張的index取得預設的物件大小
 let imageSizes = [0.8, 0.7, 1, 1.6, 1, 1, 1, 1];
 
 function preload() {
-  theShader = new p5.Shader(this.renderer, vert, frag);
-  console.log('theShader', theShader)
-  imageTitle = loadImage("標準字.png");
-  noiseSeed(random(50000));
+  isMobile = detectDevice();
 
+  theShader = new p5.Shader(this.renderer, vert, frag);
+  imageTitle = loadImage("標準字.png");
+  noiseSeed(random(noiseSeedVal[ isMobile==true ? 0 : 1]));
+  
   //載入並指定影像大小
   for (var i = 1; i <= 8; i++) {
     let img = loadImage(`items/素材0${i}.png`);
     img.defaultScale = imageSizes[i-1];
     images.push(img);
   }
-  for (var i = 3; i <= 8; i++) {
-    if (random() < 0.8) {
-      let img = loadImage(`items/素材0${i}.png`);
-      img.defaultScale = imageSizes[i-1];
-      images.push(img);
+
+  if(!isMobile) {
+    for (var i = 3; i <= 8; i++) {
+      if (random() < 0.8) {
+        let img = loadImage(`items/素材0${i}.png`);
+        img.defaultScale = imageSizes[i-1];
+        images.push(img);
+      }
     }
   }
 }
@@ -42,13 +49,19 @@ function draw() {
   webGLCanvas.clear(0, 0, width, height);
 
   //設定shader用的參數
+
   theShader.setUniform("u_resolution", [
+    // windowWidth / shaderResolution[ isMobile==true ? 0 : 1],
+    // windowHeight / shaderResolution[ isMobile==true ? 0 : 1]
     windowWidth / 1000,
-    windowHeight / 1000,
+    windowHeight / 1000
   ]);
   theShader.setUniform("u_time", millis() / 1000);
   theShader.setUniform("u_mouse", [mouseX / width, mouseY / height]);
   theShader.setUniform("u_tex_title", imageTitle);
+  // pic size 1038*1880
+  // if
+  // const picRatio = 
   theShader.setUniform("tex_size", [imageTitle.width, imageTitle.height]);
   theShader.setUniform("mouseIsPressed", mouseIsPressed);
 
@@ -112,3 +125,20 @@ function windowResized() {
   // webGLCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
   // webGLCanvas.shader(theShader);
 }
+
+
+function detectDevice() { 
+  if( navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+  || navigator.userAgent.match(/Windows Phone/i)
+  ){
+     return true;
+   }
+  else {
+     return false;
+   }
+ }

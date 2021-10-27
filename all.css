@@ -8,9 +8,6 @@ body {
 }
 .mainTitle {
     display: none;
-}
-.isMobile .mainTitle {
-    display: block;
     position: absolute;
     z-index: 100;
     height: auto;
@@ -18,8 +15,12 @@ body {
     top: 50%;
     transform: translateY(-43%);
 }
+.isMobile .mainTitle {
+    display: block;
+}
 @media screen and (max-width: 990px) and (min-width: 0px) {
-    .isMobile .mainTitle {
+    .mainTitle {
+        display: block;
         top: calc((100vh - 250px) / 2);
         left: 50%;
         width: auto;

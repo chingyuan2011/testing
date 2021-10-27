@@ -98,7 +98,7 @@ function draw() {
     pop();
   }
 
-  if (!isMobile) {
+  if (!isMobile && width >= 990) {
     drawShader();
   }
 
@@ -139,7 +139,6 @@ function drawShader() {
   webGLCanvas.clear(0, 0, width, height);
 
   //設定shader用的參數
-
   theShader.setUniform("u_resolution", [
     windowWidth / 1000,
     windowHeight / 1000
@@ -152,7 +151,16 @@ function drawShader() {
   theShader.setUniform("mouseIsPressed", mouseIsPressed);
 
   //繪製shader的大小（標題層）
-  webGLCanvas.rect(-width / 2, -height / 2, width, height);
+  const rectMap = {
+      x: -width / 4 * 3, y: -height / 2, width: width, height: height
+  };
+
+  webGLCanvas.rect(
+    rectMap['x'],
+    rectMap['y'],
+    rectMap['width'],
+    rectMap['height']
+  );
   webGLCanvas.noStroke();
   image(webGLCanvas, 0, 0);
 }

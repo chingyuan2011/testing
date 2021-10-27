@@ -38,32 +38,30 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  webGLCanvas = createGraphics(width, height, WEBGL);
-  webGLCanvas.shader(theShader);
+  // webGLCanvas = createGraphics(width, height, WEBGL);
+  // webGLCanvas.shader(theShader);
   noStroke();
 
   pixelDensity(1);
 }
 
 function draw() {
-  webGLCanvas.clear(0, 0, width, height);
+  // webGLCanvas.clear(0, 0, width, height);
 
   //設定shader用的參數
 
-  theShader.setUniform("u_resolution", [
-    // windowWidth / shaderResolution[ isMobile==true ? 0 : 1],
-    // windowHeight / shaderResolution[ isMobile==true ? 0 : 1]
-    windowWidth / 1000,
-    windowHeight / 1000
-  ]);
-  theShader.setUniform("u_time", millis() / 1000);
-  theShader.setUniform("u_mouse", [mouseX / width, mouseY / height]);
-  theShader.setUniform("u_tex_title", imageTitle);
+  // theShader.setUniform("u_resolution", [
+  //   windowWidth / 1000,
+  //   windowHeight / 1000
+  // ]);
+  // theShader.setUniform("u_time", millis() / 1000);
+  // theShader.setUniform("u_mouse", [mouseX / width, mouseY / height]);
+  // theShader.setUniform("u_tex_title", imageTitle);
   // pic size 1038*1880
   // if
   // const picRatio = 
-  theShader.setUniform("tex_size", [imageTitle.width, imageTitle.height]);
-  theShader.setUniform("mouseIsPressed", mouseIsPressed);
+  // theShader.setUniform("tex_size", [imageTitle.width, imageTitle.height]);
+  // theShader.setUniform("mouseIsPressed", mouseIsPressed);
 
   clear(0, 0, width, height);
 
@@ -107,9 +105,9 @@ function draw() {
   }
 
   //繪製shader的大小（標題層）
-  webGLCanvas.rect(-width / 2, -height / 2, width, height);
-  webGLCanvas.noStroke();
-  image(webGLCanvas, 0, 0);
+  // webGLCanvas.rect(-width / 2, -height / 2, width, height);
+  // webGLCanvas.noStroke();
+  // image(webGLCanvas, 0, 0);
 
   //外層的白框
   // stroke(255);
@@ -121,7 +119,7 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  webGLCanvas.resizeCanvas(windowWidth, windowHeight);
+  // webGLCanvas.resizeCanvas(windowWidth, windowHeight);
   // webGLCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
   // webGLCanvas.shader(theShader);
 }

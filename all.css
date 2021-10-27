@@ -20,7 +20,7 @@ body {
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .isMobile .mainTitle {
-        top: 100px;
+        top: 50px;
         left: calc(50% - 150px);
         width: 300px;
         height: auto;
@@ -174,8 +174,8 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--artistroom {
-        bottom: 120px;
-        right: 74%;
+        bottom: 90px;
+        right: 78%;
     }
 }
 .circle--fmaf {
@@ -184,7 +184,7 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--fmaf {
-        bottom: 220px;
+        bottom: 160px;
         right: 59%;
     }
 }
@@ -194,8 +194,8 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--fvl {
-        bottom: 40px;
-        right: 40%;
+        bottom: 30px;
+        right: 35%;
     }
 }
 .circle--about {
@@ -204,8 +204,8 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--about {
-        bottom: 150px;
-        right: 20%;
+        bottom: 130px;
+        right: 18%;
     }
 }
 .circle--activity {
@@ -214,8 +214,8 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--activity {
-        bottom: 220px;
-        right: 0%;
+        bottom: 200px;
+        right: -3%;
     }
 }
 .circle__block {

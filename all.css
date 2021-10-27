@@ -6,6 +6,27 @@ body {
     padding: 0;
     /* border: solid 50px white; */
 }
+.mainTitle {
+    display: none;
+}
+.isMobile .mainTitle {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    height: auto;
+    left: 15%;
+    top: 50%;
+    transform: translateY(-43%);
+}
+@media screen and (max-width: 990px) and (min-width: 0px) {
+    .isMobile .mainTitle {
+        top: 100px;
+        left: calc(50% - 150px);
+        width: 300px;
+        height: auto;
+        transform: none;
+    }
+}
 
 .videoWrap {
     position: relative;
@@ -35,7 +56,7 @@ video {
     transform: translate(-50%) scale(0.8);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 990px) {
     .indicator {
         display: none;
     }
@@ -87,7 +108,6 @@ canvas {
     vertical-align: middle;
 }
 
-
 /* 泡泡選單 */
 .flex-center{
     display: flex;
@@ -105,9 +125,8 @@ canvas {
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle__outblock {
         position: relative;
-        width: 100%;
-        height: 38vh;
-        margin-top: 10vh;
+        width: calc(100% - 100px);
+        margin-left: 50px;
     }
 }
 .circle {
@@ -155,7 +174,7 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--artistroom {
-        bottom: 20vh;
+        bottom: 120px;
         right: 74%;
     }
 }
@@ -165,7 +184,7 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--fmaf {
-        bottom: 29vh;
+        bottom: 220px;
         right: 59%;
     }
 }
@@ -175,7 +194,7 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--fvl {
-        bottom: 14vh;
+        bottom: 40px;
         right: 40%;
     }
 }
@@ -185,7 +204,7 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--about {
-        bottom: 21vh;
+        bottom: 150px;
         right: 20%;
     }
 }
@@ -195,8 +214,8 @@ a.circle__block{
 }
 @media screen and (max-width: 990px) and (min-width: 0px) {
     .circle--activity {
-        bottom: 28vh;
-        right: 2%;
+        bottom: 220px;
+        right: 0%;
     }
 }
 .circle__block {

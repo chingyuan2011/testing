@@ -10,6 +10,7 @@ let imageSizes = [0.8, 0.7, 1, 1.6, 1, 1, 1, 1];
 
 function preload() {
   theShader = new p5.Shader(this.renderer, vert, frag);
+  console.log('theShader', theShader)
   imageTitle = loadImage("標準字.png");
   noiseSeed(random(50000));
 
@@ -102,12 +103,12 @@ function draw() {
   // noFill(0);
   // strokeWeight(50);
 
-  rect(0, 0, width, height);
+  // rect(0, 0, width, height);
 }
 
 function windowResized() {
-  console.log(windowWidth, windowHeight)
   resizeCanvas(windowWidth, windowHeight);
+  webGLCanvas.resizeCanvas(windowWidth, windowHeight);
   // webGLCanvas = createGraphics(windowWidth, windowHeight, WEBGL);
   // webGLCanvas.shader(theShader);
 }

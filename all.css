@@ -81,12 +81,18 @@ video {
 }
 
 canvas {
+    display: block;
     z-index: 500;
     position: absolute;
     left: 0;
     top: 0;
     z-index: 50;
     /* mix-blend-mode: multiply; */
+}
+@media only screen and (max-width: 990px) {
+    canvas {
+        display: none;
+    }
 }
 
 /* .indicator * { */
@@ -223,7 +229,7 @@ a.circle__block{
 .circle__block {
     position: relative;
     align-self: center;
-    background: radial-gradient(50% 50% at 50% 50%, transparent 0, #000 100%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(32, 32, 32, 0.6) 0, #000 80%);
     width: 191px;
     height: 191px;
     border-radius: 50%;

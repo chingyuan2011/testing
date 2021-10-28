@@ -29,15 +29,15 @@ function preload() {
     images.push(img);
   }
   // 隨機加入圖片，手機版不執行這段
-  if (!isMobile) {
-    for (var i = 3; i <= 8; i++) {
-      if (random() < 0.8) {
-        let img = loadImage(`items/素材0${i}.png`);
-        img.defaultScale = imageSizes[i - 1];
-        images.push(img);
-      }
-    }
-  }
+  // if (!isMobile) {
+  //   for (var i = 3; i <= 8; i++) {
+  //     if (random() < 0.8) {
+  //       let img = loadImage(`items/素材0${i}.png`);
+  //       img.defaultScale = imageSizes[i - 1];
+  //       images.push(img);
+  //     }
+  //   }
+  // }
 }
 
 function setup() {
@@ -79,7 +79,7 @@ function draw() {
     }
 
     let x =
-      noise((i + 3) * 700, frameCount / timeFactor) * (width + spacing.x) - spacing.x,
+      noise((i + 3) * 700, frameCount / timeFactor) * (width / 3 * 2 + spacing.x) - spacing.x + width / 3,
       y =
         noise((i + 1) * 400, frameCount / timeFactor, (i + 7) * 5000 + frameCount / timeFactor / 100) * (height + spacing.y) - spacing.y,
       ang = noise(i, frameCount / timeFactor, 10);
